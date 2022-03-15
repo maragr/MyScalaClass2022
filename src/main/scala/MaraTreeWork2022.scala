@@ -2,25 +2,8 @@ import scala.io.StdIn.readLine
 
 object MaraTreeWork2022 extends App {
 
-  //tree height should be the one assigned
-  //simple version for height 3 would be
-  //  *
-  // ***
-  //*****
 
-  //for full points I would like to see the following
-  //if user enters name Valdis  and height 9
-  //then we should print
-  //        *
-  //       VVV
-  //      AAAAA
-  //     LLLLLLL
-  //    DDDDDDDDD
-  //   IIIIIIIIIII
-  //  SSSSSSSSSSSSS
-  // VVVVVVVVVVVVVVV
-  //AAAAAAAAAAAAAAAAA
-  val personName: String = readLine("What is Your name?")
+  val personName: String = readLine("What is Your name?").toUpperCase
   val treeHeight: Int = readLine(s"$personName what would be the height of Your name tree?").toInt
 
 
@@ -29,14 +12,13 @@ object MaraTreeWork2022 extends App {
     var symbol = 1
     var space = treeHeight
     while (i <= treeHeight) {
-      println(" "*space+"*"*symbol)
-      i+=1; space -= 1; symbol += 2
+      for (c <- personName) {
+        println(" " * space + s"$c" * symbol)
+        i += 1; space -= 1; symbol += 2
+      }
     }
   } else {
-    println(readLine(s"Dear $personName, sorry, this height $treeHeight is too long for survival, please choose height 40 as maximum"))
+    { println(readLine(s"Dear $personName, sorry, this height $treeHeight is too long for survival, please run programm again and choose height 40 as maximum"))
+          }
   }
-
-
-
-
 }
