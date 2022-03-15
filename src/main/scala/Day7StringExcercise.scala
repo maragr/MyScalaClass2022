@@ -13,4 +13,4 @@ object Day7StringExcercise extends App {
   println(processString("abracadabra", "cr")) //should print abRaCadabRa
   println(processString("   abracadabra  ", "cr", needsTrim = true)) //should print abRaCadabRa
 }
-}
+
