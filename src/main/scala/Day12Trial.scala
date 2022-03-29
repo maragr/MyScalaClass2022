@@ -18,4 +18,10 @@ class Animal (var animalName: String,
     wolf.makeSound("Auu")
     println (wolf.makeSound("Au"))
     wolf.meetOrRun("run away how fast You can!")
+
+    val chicken = new Animal ("chichen", "domestic", "grains", "Cococooco")
+    chicken.makeSound("coocococooo")
+    chicken.meetOrRun("greet and feed them")
+
+
 }
