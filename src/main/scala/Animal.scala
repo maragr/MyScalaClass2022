@@ -19,7 +19,7 @@ class Animal (var animalName: String,
 
 
   object Day12AnimalExercise extends App {
-    println("some changes done in Animal greetings")
+    println("Let's meet some Animals with greetings or run away from them")
     val wolf = new Animal("wolfSecret", animalSound = "Auuuuuuuuuuuuuuu")
     wolf.makeSound("Auu")
     wolf.meetOrRun("nothing!",likeContact = false)
