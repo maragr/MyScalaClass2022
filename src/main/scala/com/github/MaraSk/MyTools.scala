@@ -1,4 +1,4 @@
-package com.github.maraSk
+package com.github.MaraSk
 
 import java.io.{File, FileWriter}
 import java.nio.file.{Files, Paths}

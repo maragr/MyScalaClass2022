@@ -1,4 +1,4 @@
-package com.github.maraSk
+package com.github.MaraSk
 
 case class Laptop(name:String, speed:Double, manufacturer:String)
 

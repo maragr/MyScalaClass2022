@@ -1,3 +1,5 @@
+package com.github.MaraSk
+
 import scala.io.StdIn.readLine
 
 object MaraTreeWork2022 extends App {
@@ -8,7 +10,7 @@ object MaraTreeWork2022 extends App {
 
 
   if (treeHeight <= 40) {
-    var i=1
+    var i = 1
     var symbol = 1
     var space = treeHeight
     while (i <= treeHeight) {
@@ -18,7 +20,8 @@ object MaraTreeWork2022 extends App {
       }
     }
   } else {
-    { println(readLine(s"Dear $personName, sorry, this height $treeHeight is too long for survival, please run programm again and choose height 40 as maximum"))
-          }
+    {
+      println(readLine(s"Dear $personName, sorry, this height $treeHeight is too long for survival, please run programm again and choose height 40 as maximum"))
+    }
   }
 }

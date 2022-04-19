@@ -1,4 +1,4 @@
-import com.github.maraSk.MyTools
+package com.github.MaraSk
 
 import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
@@ -17,7 +17,7 @@ object Day17ExerciseSolved extends App {
   val poetName = myLines(1).drop(3)
 
   // Another method:
-  val lengthOfSecondLine:Int = myLines(1).length
+  val lengthOfSecondLine: Int = myLines(1).length
   //  val poetName = text(1).slice(3,lengthOfSecondLine) //so we slice from 4th character to the end
   println(s"Poet name: $poetName\n")
 
@@ -59,8 +59,7 @@ object Day17ExerciseSolved extends App {
   println(stringBuilder.mkString)
 
 
-
-  MyTools.saveText("src/resources/woods.txt",outputString)
+  MyTools.saveText("src/resources/woods.txt", outputString)
 
   val myBuffer = ArrayBuffer[String]()
   myBuffer += myLines.head
@@ -70,9 +69,9 @@ object Day17ExerciseSolved extends App {
   MyTools.saveLines("src/resources/woods_arr.txt", myBuffer.toArray)
 
   //we can also append to an already existing file
-  MyTools.saveLines("src/resources/woods_arr.txt", Array("*"*30, "Hurray","hurray"), append = true)
+  MyTools.saveLines("src/resources/woods_arr.txt", Array("*" * 30, "Hurray", "hurray"), append = true)
   MyTools.saveLines("src/resources/woods_arr.txt",
-    Array("*"*30, "aha","oho"),
+    Array("*" * 30, "aha", "oho"),
     append = true,
     lineEnd = "\n\uD83D\uDE05\n" //so this is unicode for a smiley takes 4 bytes actually using \u
 

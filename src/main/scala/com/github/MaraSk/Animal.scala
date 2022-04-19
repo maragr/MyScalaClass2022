@@ -1,3 +1,5 @@
+package com.github.MaraSk
+
 class Animal (var animalName: String,
               val animalType: String = "wild",
               var animalLikes: String = "meat",

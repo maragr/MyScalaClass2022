@@ -1,3 +1,5 @@
+package com.github.MaraSk
+
 import scala.collection.mutable
 
 class Animal2 (val name:String,

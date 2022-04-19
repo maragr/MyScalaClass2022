@@ -1,3 +1,5 @@
+package com.github.MaraSk
+
 object Day11ExercisePangram extends App {
   def isPangram(text: String, alpha: String = "abcdefghijklmnopqrstuvwxyz"): Boolean = {
     val testIfPangram = text.toLowerCase.toSet
@@ -10,7 +12,5 @@ object Day11ExercisePangram extends App {
   val anotherText = "something different."
   println(isPangram(anotherText))
   val anotherRealPangram = "Pack my box with five dozen liquor jugs"
-  println (s"lets check if $anotherRealPangram really is the pangram? ", isPangram(anotherRealPangram))
+  println(s"lets check if $anotherRealPangram really is the pangram? ", isPangram(anotherRealPangram))
 }
-
-

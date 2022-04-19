@@ -1,3 +1,5 @@
+package com.github.MaraSk
+
 import java.time.Year
 import scala.io.StdIn.readLine
 

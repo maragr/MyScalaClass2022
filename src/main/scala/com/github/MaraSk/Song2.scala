@@ -1,3 +1,5 @@
+package com.github.MaraSk
+
 class Song2 (title: String = "", author: String= "", lyrics:Seq[String]){
 
     println(s"New song $title made by $author")

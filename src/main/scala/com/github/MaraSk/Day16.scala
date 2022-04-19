@@ -1,4 +1,4 @@
-import com.github.maraSk.Laptop
+package com.github.MaraSk
 
 object Day16 extends App {
 
