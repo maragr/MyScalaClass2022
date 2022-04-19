@@ -1,4 +1,4 @@
-package BirdsTrait
+package com.github.MaraSk.BirdsTrait
 
 class Penguin extends Swim with Run {
   swim(): Unit
