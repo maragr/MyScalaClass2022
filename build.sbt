@@ -10,3 +10,5 @@ lazy val root = (project in file("."))
 // https://mvnrepository.com/artifact/com.lihaoyi/upickle
 libraryDependencies += "com.lihaoyi" %% "upickle" % "1.6.0"
 
+// https://mvnrepository.com/artifact/org.scala-lang.modules/scala-xml
+libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "2.1.0"
