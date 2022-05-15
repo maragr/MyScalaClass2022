@@ -1,0 +1,44 @@
+Scala TODO task manager:
+
+1. Create class task: commands = methods
+
+1. Possible commands
+
+-----------------
+
+add <task>       - add a to-do item
+
+h                - show this help text
+
+rm [task number] - remove a task by its number (lets make this last)
+
+v                - view the list of tasks
+
+q                - quit (maybe we don’t need this)
+
+s 		- show tasks (on current date or all tasks)
+
+2. Create main object program:
+
+- Ask user name,
+
+- print out help with commands
+
+- ask what user wants todo
+
+- create IF statement to do the command
+
+- ask user on what date he wants to do this task, T is for today (make today with current date command)
+
+3. Database:
+
+- create database
+
+- connect to database
+
+- write tasks, date, users into database
+
+- get information from database
+
+- remove task from database
+
