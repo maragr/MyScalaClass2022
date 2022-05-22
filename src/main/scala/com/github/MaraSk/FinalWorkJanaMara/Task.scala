@@ -6,9 +6,9 @@ import scala.collection.mutable.ArrayBuffer
 case class Task(userName:String, task:String){
 
   def printHelp():Unit = {
-    println("add <task> - add a to-do item")
+    println("add - add a to-do item")
     println("h - show this help text")
-    println("rm <task number> - remove a task by its number")
+    println("rm - remove a task by its number")
     println("v - view the list of tasks")
     println("q - quit")
     //println("s - show tasks (on current date or all tasks)")

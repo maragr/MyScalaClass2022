@@ -30,6 +30,7 @@ object FinalWorkTaskListManagerJanaMara extends App {
       if (selectionToDo.toLowerCase == "rm") {
         val deleteTask = readLine("Please enter task number which You would like to delete: ")
         db.deleteTaskFromDB(userName, deleteTask.toInt)
+        println("Your task have been deleted!")
       } else {
       if (selectionToDo.toLowerCase == "v") {
         db.printUserTasks(userName, Task.toString())
@@ -37,7 +38,7 @@ object FinalWorkTaskListManagerJanaMara extends App {
         if (selectionToDo.toLowerCase == "q") {
           taskManagerActive = false
           db.printQuit(userName)
-        }
+        } else println("Invalid command, please try again!")
       }
     }
   }
