@@ -109,7 +109,7 @@ case class Task(userName:String, task:String){
     preparedStmt.execute
     preparedStmt.close()
   }
-  def showAllUsersTasks(userName:String, task: String):Array[Task]={
+  def showAllUsersTasks(userName:String):Array[Task]={
     val sql =
       """
         |SELECT u.name, t.task FROM tasks t
@@ -120,19 +120,20 @@ case class Task(userName:String, task:String){
         |""".stripMargin
 
     val userBuffer = ArrayBuffer[Task]() //so we start with an empty buffer to store our rows
-    val statement = conn.createStatement()
-    val rs = statement.executeQuery(sql)
+    val preparedStmt: PreparedStatement = conn.prepareStatement(sql)
+    preparedStmt.setString(1, userName)
+    val rs = preparedStmt.executeQuery
     while (rs.next()) {
-      val userName = Task(rs.getString("name"), task = rs.getString("task"))
+      val userName = Task(rs.getString("name"), rs.getString("task"))
       userBuffer += userName
     }
     userBuffer.toArray //better to return immutable values
   }
 
   def printUserTasks(userName:String, task: String):Unit = {
+    val allTasks = showAllUsersTasks(userName)
     println(s"Here is your tasks $userName:")
-    val allTasks = showAllUsersTasks(userName, task)
-    allTasks.foreach(tasks => println(allTasks.mkString))
+    allTasks.foreach(task => println(task.printTask))
   }
 
 
@@ -140,5 +141,7 @@ case class Task(userName:String, task:String){
     println(s"Thank You $userName for using task manager! Good bye!")
   }
   // simple notification about quiting the TaskManager
+  def printTask:String = s"$task"
+
 
 }
