@@ -8,7 +8,7 @@ case class Task(userName:String, task:String){
   def printHelp():Unit = {
     println("add <task> - add a to-do item")
     println("h - show this help text")
-    //println("rm [task number] - remove a task by its number (lets make this last)")
+    println("rm <task number> - remove a task by its number")
     println("v - view the list of tasks")
     println("q - quit")
     //println("s - show tasks (on current date or all tasks)")
@@ -128,20 +128,32 @@ case class Task(userName:String, task:String){
       userBuffer += userName
     }
     userBuffer.toArray //better to return immutable values
-  }
+  } //TODO print also task number?
 
   def printUserTasks(userName:String, task: String):Unit = {
     val allTasks = showAllUsersTasks(userName)
     println(s"Here is your tasks $userName:")
     allTasks.foreach(task => println(task.printTask))
   }
+  def printTask:String = s"$task"
 
+  def deleteTaskFromDB(userName:String, task_id: Int):Unit = {
+    val userid = getUserId(userName)
+    val deleteSql = """
+                      |DELETE FROM tasks
+                      |WHERE task_id = ?
+""".stripMargin
+    val preparedStmt: PreparedStatement = conn.prepareStatement(deleteSql)
+    preparedStmt.clearParameters()
+    preparedStmt.execute
+    preparedStmt.close()
+  } //FIXME does not work properly
 
   def printQuit(userName:String):Unit = {
     println(s"Thank You $userName for using task manager! Good bye!")
   }
   // simple notification about quiting the TaskManager
-  def printTask:String = s"$task"
+
 
 
 }
