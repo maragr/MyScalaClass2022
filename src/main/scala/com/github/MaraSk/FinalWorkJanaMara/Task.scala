@@ -1,6 +1,6 @@
 package com.github.MaraSk.FinalWorkJanaMara
 
-import java.sql.{DriverManager, PreparedStatement}
+import java.sql.{Connection, DriverManager, PreparedStatement}
 import scala.collection.mutable.ArrayBuffer
 
 case class Task(userName:String, task:String){
@@ -16,8 +16,8 @@ case class Task(userName:String, task:String){
 
    val url =  s"jdbc:sqlite:src/resources/taskmanager/taskmanager.db"
 
-  val conn = DriverManager.getConnection(url) //TODO handle exceptions at connection time
-  println(s"Opened Database at ${conn.getMetaData.getURL}")
+  val conn: Connection = DriverManager.getConnection(url) //TODO handle exceptions at connection time
+  //println(s"Opened Database at ${conn.getMetaData.getURL}")
 
   def migrate():Unit = {
     //migrate for db refers to table creation other setup needed to start work in a new environment
@@ -137,7 +137,7 @@ case class Task(userName:String, task:String){
 
 
   def printQuit(userName:String):Unit = {
-    println(s"Thank You $userName for using task manager!")
+    println(s"Thank You $userName for using task manager! Good bye!")
   }
   // simple notification about quiting the TaskManager
 

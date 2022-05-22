@@ -9,12 +9,13 @@ object FinalWorkTaskListManagerJanaMara extends App {
   //created task object to call methods
   val db = Task("user", "task")
   db.migrate()
+  var tasManagerActive = true
   println("Final work assignment. TODO/TaskList manager. Authors: Jana Fedotova, Māra Skudrīte")
   val userName = readLine("Welcome to TaskList manager. Please enter Your name:")
-  db.printHelp()
-
   //Adding User to Database
   db.AddNewUserToDatabase(userName)
+  db.printHelp()
+  while (tasManagerActive){
   val selectionToDo = readLine(s"$userName, please select what do You want to do in task manager:")
   if (selectionToDo.toLowerCase == "add") {
     val taskInput = readLine("Enter task, please:")
@@ -30,11 +31,12 @@ object FinalWorkTaskListManagerJanaMara extends App {
         println(db.printUserTasks(userName, Task.toString()))
       } else {
         if (selectionToDo.toLowerCase == "q") {
+          tasManagerActive = false
           db.printQuit(userName)
         }
       }
     }
-  }
+  }}
 
 
   //TODO add loop to for reasking commands
