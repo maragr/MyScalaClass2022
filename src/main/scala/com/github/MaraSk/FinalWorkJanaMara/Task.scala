@@ -2,8 +2,9 @@ package com.github.MaraSk.FinalWorkJanaMara
 
 import java.sql.{Connection, DriverManager, PreparedStatement}
 import scala.collection.mutable.ArrayBuffer
+import scala.io.StdIn.readLine
 
-case class Task(userName:String, task:String){
+case class Task(userName:String, task:String, taskId:Int = 0){
 
   def printHelp():Unit = {
     println("add - add a to-do item")
@@ -61,7 +62,7 @@ case class Task(userName:String, task:String){
       preparedStmt.close()
     }
     else {
-      println(s"User $userName already exists, nothing to do here!")
+      println(s"Welcome again $userName!")
     }
   }
   def getUserId(userName:String):Int = {
@@ -109,10 +110,11 @@ case class Task(userName:String, task:String){
     preparedStmt.execute
     preparedStmt.close()
   }
+
   def showAllUsersTasks(userName:String):Array[Task]={
     val sql =
       """
-        |SELECT u.name, t.task FROM tasks t
+        |SELECT u.name, t.task, t.task_id FROM tasks t
         |JOIN users u
         |ON u.id = t.user_id
         |WHERE u.name = ?
@@ -124,32 +126,33 @@ case class Task(userName:String, task:String){
     preparedStmt.setString(1, userName)
     val rs = preparedStmt.executeQuery
     while (rs.next()) {
-      val userName = Task(rs.getString("name"), rs.getString("task"))
+      val userName = Task(rs.getString("name"), rs.getString("task"), rs.getInt("task_id"))
       userBuffer += userName
     }
     userBuffer.toArray //better to return immutable values
   } //TODO print also task number?
 
-  def printUserTasks(userName:String, task: String):Unit = {
+  def printUserTasks(userName:String):Unit = {
     val allTasks = showAllUsersTasks(userName)
     println(s"Here is your tasks $userName:")
     allTasks.foreach(task => println(task.printTask))
   }
-  def printTask:String = s"$task"
+  def printTask:String = s"Task ID: $taskId, Task: $task"
 
-  def deleteTaskFromDB(userName:String, task_id: Int):Unit = {
-    val userid = getUserId(userName)
+  def deleteTaskFromDB(taskID:Int):Unit = {
     val deleteSql = """
                       |DELETE FROM tasks
-                      |WHERE task_id = ?
-""".stripMargin
+                      |WHERE
+                      |task_id = ?
+                      |;
+                      """.stripMargin
     val preparedStmt: PreparedStatement = conn.prepareStatement(deleteSql)
-    preparedStmt.clearParameters()
+    preparedStmt.setInt(1, taskID)
     preparedStmt.execute
     preparedStmt.close()
   } //FIXME does not work properly
 
-  def printQuit(userName:String):Unit = {
+  def printQuit(userName:String) = {
     println(s"Thank You $userName for using task manager! Good bye!")
   }
   // simple notification about quiting the TaskManager
