@@ -3,7 +3,12 @@ package com.github.MaraSk.FinalWorkJanaMara
 import java.sql.{Connection, DriverManager, PreparedStatement}
 import scala.collection.mutable.ArrayBuffer
 import scala.io.StdIn.readLine
-
+/** A tasks assigned for user
+ *
+ * @constructor creates username and his task list assigning taskId
+ * @param userName creates new user or find existing user by name
+ * @param task adds or shows or deletes tasks according to commands
+* */
 case class Task(userName:String, task:String, taskId:Int = 0){
 
   def printHelp():Unit = {
@@ -20,9 +25,11 @@ case class Task(userName:String, task:String, taskId:Int = 0){
   val conn: Connection = DriverManager.getConnection(url) //TODO handle exceptions at connection time
   //println(s"Opened Database at ${conn.getMetaData.getURL}")
 
+  /**
+   * migrate for db refers to table creation other setup needed to start work in a new environment
+   * @see [[https://www.sqlitetutorial.net/sqlite-create-table/]]
+   **/
   def migrate():Unit = {
-    //migrate for db refers to table creation other setup needed to start work in a new environment
-    //https://www.sqlitetutorial.net/sqlite-create-table/
 
     val statement = conn.createStatement() //we create a statement object that will handle sending SQL statements to the DB
     //this query should do nothing if table already exists
@@ -50,6 +57,9 @@ case class Task(userName:String, task:String, taskId:Int = 0){
     statement.addBatch(sql1)
     statement.executeBatch()
   }
+  /**
+   * creates new user in database by his name if user does not exist and assigns userid
+   **/
   def AddNewUserToDatabase(userName:String):Unit={
     if (getUserCount(userName) == 0) {
       val insertSql = """
@@ -98,6 +108,9 @@ case class Task(userName:String, task:String, taskId:Int = 0){
     preparedStmt.close()
     cnt
   }
+  /**
+   * adds task to identified user to database and assigns taskid and current timestamp
+   **/
   def addTaskToDB(userName:String, task:String):Unit = {
     val userid = getUserId(userName)
     val insertSql = """
@@ -110,7 +123,9 @@ case class Task(userName:String, task:String, taskId:Int = 0){
     preparedStmt.execute
     preparedStmt.close()
   }
-
+  /**
+   * prints out all tasks to identified user from task database
+   **/
   def showAllUsersTasks(userName:String):Array[Task]={
     val sql =
       """
@@ -139,6 +154,9 @@ case class Task(userName:String, task:String, taskId:Int = 0){
   }
   def printTask:String = s"Task ID: $taskId, Task: $task"
 
+  /**
+   * deletes task from identified user taskList database by task_id
+   **/
   def deleteTaskFromDB(taskID:Int):Unit = {
     val deleteSql = """
                       |DELETE FROM tasks
@@ -152,7 +170,10 @@ case class Task(userName:String, task:String, taskId:Int = 0){
     preparedStmt.close()
   } //FIXME does not work properly
 
-  def printQuit(userName:String) = {
+  /**
+   * quits the application
+   **/
+  def printQuit(userName:String): Unit = {
     println(s"Thank You $userName for using task manager! Good bye!")
   }
   // simple notification about quiting the TaskManager
