@@ -7,7 +7,7 @@ import scala.collection.mutable.ArrayBuffer
  * @constructor creates username and his task list assigning taskId
  * @param userName creates new user or find existing user by name
  * @param task adds or shows or deletes tasks according to commands
- * */
+ */
 case class Task(userName:String, task:String, taskId:Int = 0){
 
   val url =  s"jdbc:sqlite:src/resources/taskmanager/taskmanager.db"
@@ -27,7 +27,7 @@ case class Task(userName:String, task:String, taskId:Int = 0){
   /**
    * migrate for db refers to table creation other setup needed to start work in a new environment
    * @see [[https://www.sqlitetutorial.net/sqlite-create-table/]]
-   **/
+   */
   def migrate():Unit = {
     val statement = conn.createStatement() //we create a statement object that will handle sending SQL statements to the DB
     //this query should do nothing if table already exists
@@ -59,7 +59,7 @@ case class Task(userName:String, task:String, taskId:Int = 0){
    * creates new user in database by his name if user does not exist
    * assigns userid
    * @param userName = name of the user that uses taskmanager
-   **/
+   */
   def addNewUserToDatabase(userName:String):Unit={
     if (getUserCount(userName) == 0) {
       val insertSql = """
@@ -122,7 +122,7 @@ case class Task(userName:String, task:String, taskId:Int = 0){
    * Assigns task Id and current timestamp
    * @param userName = name of the taskmanager user
    * @param task = task that is defined by the user
-   **/
+   */
   def addTaskToDB(userName:String, task:String):Unit = {
     val userid = getUserId(userName)
     val insertSql = """
@@ -138,7 +138,7 @@ case class Task(userName:String, task:String, taskId:Int = 0){
   /**
    * Saves all users tasks from database into array
    * @param userName = name of the taskmanager user
-   **/
+   */
   def showAllUsersTasks(userName:String):Array[Task]={
     val sql =
       """
@@ -169,13 +169,15 @@ case class Task(userName:String, task:String, taskId:Int = 0){
     println(s"Here is your tasks $userName:")
     allTasks.foreach(task => println(task.printTask))
   }
-  /** Makes pretty string for task Id and task */
+  /**
+   * Makes pretty string for task Id and task
+   */
   def printTask:String = s"Task ID: $taskId, Task: $task"
 
   /**
    * Deletes task from identified user taskList database by task_id
    * @param taskID = id of a task that user wants to delete
-   **/
+   */
   def deleteTaskFromDB(taskID:Int):Unit = {
     val deleteSql = """
                       |DELETE FROM tasks
@@ -191,7 +193,7 @@ case class Task(userName:String, task:String, taskId:Int = 0){
 
   /**
    * Quits the application
-   **/
+   */
   def printQuit(userName:String): Unit = {
     println(s"Thank You $userName for using task manager! Good bye!")
   }

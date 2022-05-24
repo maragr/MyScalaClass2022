@@ -51,7 +51,7 @@ object FinalWork extends App {
   /**
    * main loop to choose commands till user quits taskList manager
    * asks user to enter command
-   **/
+   */
   while (taskManagerActive) {
     val selectionToDo = readLine(s"$userName, please select what do You want to do in task manager: ")
     selectionToDo.toLowerCase match {

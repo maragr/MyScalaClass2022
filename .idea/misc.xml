@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
   <component name="ScaladocSettings">
-    <option name="outputDir" value="C:\Users\janap\Documents\ScalaClass\docs" />
+    <option name="outputDir" value="C:\Users\Lenovo\IdeaProjects\MyScalaClass2022\docs" />
     <option name="additionalFlags" value="" />
     <option name="maxHeapSize" value="" />
     <option name="docTitle" value="FinalProjectJanaMara documentation" />
-    <option name="verbose" value="false" />
+    <option name="verbose" value="true" />
     <option name="openInBrowser" value="true" />
   </component>
 </project>
